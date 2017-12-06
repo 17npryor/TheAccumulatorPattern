@@ -9,8 +9,8 @@ Additionally, it emphasizes that you must
 before you can implement a solution to the problem in Python.
 
 Authors: David Mutchler, Dave Fisher, Valerie Galluzzi, Amanda Stouder,
-         their colleagues and PUT_YOUR_NAME_HERE.
-"""  # TODO: 1. PUT YOUR NAME IN THE ABOVE LINE.
+         their colleagues and Nathan Pryor.
+"""  # DONE: 1. PUT YOUR NAME IN THE ABOVE LINE.
 
 import rosegraphics as rg
 
@@ -96,7 +96,7 @@ def draw_parallel_lines(n, point, length, window):
       :type window: rg.RoseWindow
     """
     # ------------------------------------------------------------------
-    # TODO: 2. Implement and test this function.
+    # DONE: 2. Implement and test this function.
     #          Tests have been written for you (above).
     #
     # CONSIDER using the ACCUMULATOR IN GRAPHICS pattern,
@@ -110,6 +110,19 @@ def draw_parallel_lines(n, point, length, window):
     ####################################################################
     # ------------------------------------------------------------------
 
+    x = point.x  # Initialize x and y BEFORE the loop
+    y = point.y  # Choose values that make the FIRST object easy to draw
+    for k in range(n):  # Loop that does NOT use its index variable
+        start_point = rg.Point(x, y)
+        end_point = rg.Point(x+length, y)
+        line = rg.Line(start_point, end_point)
+        length = length
+
+        line.attach_to(window)
+
+        y = y + 30
+
+    window.render()
 
 def run_test_draw_lines():
     """ Tests the   draw_lines  function. """
@@ -160,8 +173,21 @@ def draw_lines(n, point, window):
       :type point: rg.Point
       :type window: rg.RoseWindow
     """
+
+    x = point.x
+    y = point.y - 100
+    for k in range(n):
+        end_point = rg.Point(x+100, y)
+        line = rg.Line(point, end_point)
+
+        line.attach_to(window)
+
+        y = y + (200/(n-1))
+
+    window.render()
+
     # ------------------------------------------------------------------
-    # TODO: 3. Implement and test this function.
+    # DONE: 3. Implement and test this function.
     #          Tests have been written for you (above).
     #
     # CONSIDER using the ACCUMULATOR IN GRAPHICS pattern,
